@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,8 @@ namespace Ogrenci.CRUD
                             Id = Convert.ToInt32(dr["ID"]),
                             Ad = dr["Ad"].ToString(),
                             Soyad = dr["Soyad"].ToString(),
-                            Numara = Convert.ToInt32(dr["Numara"])
+                            Numara = Convert.ToInt32(dr["Numara"]),
+                            DogumTarihi = Convert.ToDateTime( dr["DogumTarihi"])
                         }
                         ); 
                 }
@@ -35,6 +37,21 @@ namespace Ogrenci.CRUD
             }
 
             return ogrencis;
+        }
+        public DataTable GetOgrenciListe2()
+        { 
+            DataTable ogrenciTable = new DataTable();
+             
+            using (SqlConnection con = Baglanti.GetConnection())
+            { 
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Ogrenci", con);
+                 
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                 
+                da.Fill(ogrenciTable);
+            }
+             
+            return ogrenciTable;
         }
 
         //Tek Öğreci Liste
@@ -55,7 +72,8 @@ namespace Ogrenci.CRUD
                     ogrenci.Id = Convert.ToInt32(dr["ID"]);
                     ogrenci.Ad = dr["Ad"].ToString();
                     ogrenci.Soyad = dr["Soyad"].ToString();
-                    ogrenci.Numara = Convert.ToInt32(dr["Numara"]);                      
+                    ogrenci.Numara = Convert.ToInt32(dr["Numara"]);
+                    ogrenci.DogumTarihi = Convert.ToDateTime(dr["DogumTarihi"]);
                 }
             }
 
@@ -66,10 +84,11 @@ namespace Ogrenci.CRUD
         {
             using (SqlConnection con = Baglanti.GetConnection())
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO Ogrenci(Ad,Soyad,Numara) VALUES(@ad,@soyad,@numara)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Ogrenci(Ad,Soyad,Numara,DogumTarihi) VALUES(@ad,@soyad,@numara,@DogumTarihi)", con);
                 cmd.Parameters.AddWithValue("@ad", ogrenci.Ad);
                 cmd.Parameters.AddWithValue("@soyad", ogrenci.Soyad);
                 cmd.Parameters.AddWithValue("@numara", ogrenci.Numara);
+                cmd.Parameters.AddWithValue("@DogumTarihi", ogrenci.DogumTarihi);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -81,11 +100,12 @@ namespace Ogrenci.CRUD
         {
             using (SqlConnection con = Baglanti.GetConnection())
             {
-                SqlCommand cmd = new SqlCommand("UPDATE Ogrenci SET Numara = @Numara, Soyad = @Soyad, Ad = @Ad  WHERE ID = @ID", con);
+                SqlCommand cmd = new SqlCommand("UPDATE Ogrenci SET Numara = @Numara, Soyad = @Soyad, Ad = @Ad, DogumTarihi = @DogumTarihi  WHERE ID = @ID", con);
                 cmd.Parameters.AddWithValue("@Ad", ogrenci.Ad);
                 cmd.Parameters.AddWithValue("@Soyad", ogrenci.Soyad);
                 cmd.Parameters.AddWithValue("@Numara", ogrenci.Numara);
                 cmd.Parameters.AddWithValue("@ID", ogrenci.Id);
+                cmd.Parameters.AddWithValue("@DogumTarihi", ogrenci.DogumTarihi);
 
                 con.Open();
                 cmd.ExecuteNonQuery();

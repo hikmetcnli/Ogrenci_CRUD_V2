@@ -41,7 +41,12 @@ namespace Ogrenci
                 grid_Liste.Rows[grid_Liste.RowCount - 1].Cells["Ad"].Value = ogrenci.Ad;
                 grid_Liste.Rows[grid_Liste.RowCount - 1].Cells["Soyad"].Value = ogrenci.Soyad;
                 grid_Liste.Rows[grid_Liste.RowCount - 1].Cells["Numara"].Value = ogrenci.Numara;
+                grid_Liste.Rows[grid_Liste.RowCount - 1].Cells["DogumTarihi"].Value = ogrenci.DogumTarihi.ToString("dd/MM/yyyy");
             }
+
+            //ikinci yöntem
+           grid2.DataSource = cRUD.GetOgrenciListe2();
+
         }
 
         private void btnOgrenciEkle_Click(object sender, EventArgs e)
@@ -54,7 +59,7 @@ namespace Ogrenci
 
         private void grid_Liste_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 4 && e.ColumnIndex != 5)
+            if (e.ColumnIndex != 5 && e.ColumnIndex != 6)
                 return;
 
             if (e.RowIndex == -1)
@@ -62,7 +67,7 @@ namespace Ogrenci
 
             int ID = Convert.ToInt32( grid_Liste.Rows[e.RowIndex].Cells[0].Value);
 
-            if (e.ColumnIndex == 4) //Güncelleme
+            if (e.ColumnIndex == 5) //Güncelleme
             {
                 frm_OgrenciEkle frm = new frm_OgrenciEkle(ID);
                 frm.ShowDialog();

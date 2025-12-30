@@ -35,6 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txt_Numara = new System.Windows.Forms.TextBox();
             this.btnKaydet = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.date_DTar = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label1
@@ -95,12 +97,31 @@
             this.btnKaydet.UseVisualStyleBackColor = true;
             this.btnKaydet.Click += new System.EventHandler(this.btnKaydet_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(38, 129);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 20);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "D.Tarihi:";
+            // 
+            // date_DTar
+            // 
+            this.date_DTar.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.date_DTar.Location = new System.Drawing.Point(106, 124);
+            this.date_DTar.Name = "date_DTar";
+            this.date_DTar.Size = new System.Drawing.Size(249, 26);
+            this.date_DTar.TabIndex = 6;
+            // 
             // frm_OgrenciEkle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(641, 450);
+            this.Controls.Add(this.date_DTar);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnKaydet);
             this.Controls.Add(this.txt_Numara);
             this.Controls.Add(this.label3);
@@ -126,5 +147,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_Numara;
         private System.Windows.Forms.Button btnKaydet;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker date_DTar;
     }
 }

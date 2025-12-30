@@ -12,5 +12,7 @@ namespace Ogrenci
         public string Ad { get; set; }
         public string Soyad { get; set; }
         public int Numara { get; set; }
+
+        public DateTime DogumTarihi { get; set; }
     }
 }

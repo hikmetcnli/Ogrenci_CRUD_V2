@@ -33,15 +33,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.grid_Liste = new System.Windows.Forms.DataGridView();
-            this.btnGuncelle = new System.Windows.Forms.Button();
-            this.btnOgrenciEkle = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Soyad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Numara = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DogumTarihi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_KayitGuncelle = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btn_Sil = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnGuncelle = new System.Windows.Forms.Button();
+            this.btnOgrenciEkle = new System.Windows.Forms.Button();
+            this.grid2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.grid_Liste)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,6 +72,7 @@
             this.Ad,
             this.Soyad,
             this.Numara,
+            this.DogumTarihi,
             this.btn_KayitGuncelle,
             this.btn_Sil});
             this.grid_Liste.GridColor = System.Drawing.Color.WhiteSmoke;
@@ -80,38 +84,9 @@
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Gray;
             this.grid_Liste.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.grid_Liste.RowTemplate.Height = 28;
-            this.grid_Liste.Size = new System.Drawing.Size(1048, 569);
+            this.grid_Liste.Size = new System.Drawing.Size(1048, 294);
             this.grid_Liste.TabIndex = 1;
             this.grid_Liste.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_Liste_CellClick);
-            // 
-            // btnGuncelle
-            // 
-            this.btnGuncelle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnGuncelle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnGuncelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGuncelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btnGuncelle.ForeColor = System.Drawing.Color.White;
-            this.btnGuncelle.Location = new System.Drawing.Point(274, 20);
-            this.btnGuncelle.Name = "btnGuncelle";
-            this.btnGuncelle.Size = new System.Drawing.Size(148, 52);
-            this.btnGuncelle.TabIndex = 2;
-            this.btnGuncelle.Text = "Güncelle";
-            this.btnGuncelle.UseVisualStyleBackColor = false;
-            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
-            // 
-            // btnOgrenciEkle
-            // 
-            this.btnOgrenciEkle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOgrenciEkle.Image = global::Ogrenci.Properties.Resources.add_user_8924229;
-            this.btnOgrenciEkle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOgrenciEkle.Location = new System.Drawing.Point(880, 13);
-            this.btnOgrenciEkle.Name = "btnOgrenciEkle";
-            this.btnOgrenciEkle.Size = new System.Drawing.Size(150, 51);
-            this.btnOgrenciEkle.TabIndex = 3;
-            this.btnOgrenciEkle.Text = "Öğrenci Ekle";
-            this.btnOgrenciEkle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOgrenciEkle.UseVisualStyleBackColor = true;
-            this.btnOgrenciEkle.Click += new System.EventHandler(this.btnOgrenciEkle_Click);
             // 
             // ID
             // 
@@ -145,6 +120,14 @@
             this.Numara.ReadOnly = true;
             this.Numara.Width = 150;
             // 
+            // DogumTarihi
+            // 
+            this.DogumTarihi.HeaderText = "Doğum Tarihi";
+            this.DogumTarihi.MinimumWidth = 8;
+            this.DogumTarihi.Name = "DogumTarihi";
+            this.DogumTarihi.ReadOnly = true;
+            this.DogumTarihi.Width = 150;
+            // 
             // btn_KayitGuncelle
             // 
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -170,11 +153,51 @@
             this.btn_Sil.ReadOnly = true;
             this.btn_Sil.Width = 150;
             // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnGuncelle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnGuncelle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuncelle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnGuncelle.ForeColor = System.Drawing.Color.White;
+            this.btnGuncelle.Location = new System.Drawing.Point(274, 20);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(148, 52);
+            this.btnGuncelle.TabIndex = 2;
+            this.btnGuncelle.Text = "Güncelle";
+            this.btnGuncelle.UseVisualStyleBackColor = false;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnGuncelle_Click);
+            // 
+            // btnOgrenciEkle
+            // 
+            this.btnOgrenciEkle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOgrenciEkle.Image = global::Ogrenci.Properties.Resources.add_user_8924229;
+            this.btnOgrenciEkle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOgrenciEkle.Location = new System.Drawing.Point(880, 13);
+            this.btnOgrenciEkle.Name = "btnOgrenciEkle";
+            this.btnOgrenciEkle.Size = new System.Drawing.Size(150, 51);
+            this.btnOgrenciEkle.TabIndex = 3;
+            this.btnOgrenciEkle.Text = "Öğrenci Ekle";
+            this.btnOgrenciEkle.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOgrenciEkle.UseVisualStyleBackColor = true;
+            this.btnOgrenciEkle.Click += new System.EventHandler(this.btnOgrenciEkle_Click);
+            // 
+            // grid2
+            // 
+            this.grid2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid2.Location = new System.Drawing.Point(12, 378);
+            this.grid2.Name = "grid2";
+            this.grid2.RowHeadersWidth = 62;
+            this.grid2.RowTemplate.Height = 28;
+            this.grid2.Size = new System.Drawing.Size(1048, 269);
+            this.grid2.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1072, 659);
+            this.Controls.Add(this.grid2);
             this.Controls.Add(this.btnOgrenciEkle);
             this.Controls.Add(this.btnGuncelle);
             this.Controls.Add(this.grid_Liste);
@@ -185,6 +208,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid_Liste)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grid2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,8 +224,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Ad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Soyad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Numara;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DogumTarihi;
         private System.Windows.Forms.DataGridViewButtonColumn btn_KayitGuncelle;
         private System.Windows.Forms.DataGridViewButtonColumn btn_Sil;
+        private System.Windows.Forms.DataGridView grid2;
     }
 }
 

@@ -36,6 +36,7 @@ namespace Ogrenci
                     txt_Ad.Text = ogrenci.Ad.ToString();
                     txt_Soyad.Text = ogrenci.Soyad.ToString();
                     txt_Numara.Text = ogrenci.Numara.ToString();
+                    date_DTar.Value = ogrenci.DogumTarihi;
                 }
             }
             else //Yeni Kayıt
@@ -51,6 +52,7 @@ namespace Ogrenci
             ogrenci.Ad = txt_Ad.Text;
             ogrenci.Soyad = txt_Soyad.Text;
             ogrenci.Id = ID;
+            ogrenci.DogumTarihi = date_DTar.Value;
 
             if (ID == 0)
                 _CRUD.OgrenciEkle(ogrenci);
