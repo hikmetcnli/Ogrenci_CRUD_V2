@@ -13,25 +13,50 @@ namespace Ogrenci
 {
     public partial class frm_OgrenciEkle : Form
     {
+        Ogreci_CRUD _CRUD = new Ogreci_CRUD();
         public frm_OgrenciEkle()
         {
             InitializeComponent();
         }
 
+        private int ID;
+        public frm_OgrenciEkle(int ID_)
+        {
+            ID = ID_;
+            InitializeComponent();
+        }
+
         private void frm_OgrenciEkle_Load(object sender, EventArgs e)
         {
+            if (ID > 0)//Kayıt Güncelleme 
+            {
+                Ogrenci ogrenci = _CRUD.GetOgrenci(ID);
+                if (ogrenci != null)
+                {
+                    txt_Ad.Text = ogrenci.Ad.ToString();
+                    txt_Soyad.Text = ogrenci.Soyad.ToString();
+                    txt_Numara.Text = ogrenci.Numara.ToString();
+                }
+            }
+            else //Yeni Kayıt
+            {
 
+            }
         }
 
         private void btnKaydet_Click(object sender, EventArgs e)
         {
             Ogrenci ogrenci = new Ogrenci();
-            ogrenci.Numara = Convert.ToInt32( txt_Numara.Text);
+            ogrenci.Numara = Convert.ToInt32(txt_Numara.Text);
             ogrenci.Ad = txt_Ad.Text;
             ogrenci.Soyad = txt_Soyad.Text;
+            ogrenci.Id = ID;
 
-            Ogreci_CRUD _CRUD = new Ogreci_CRUD();
-            _CRUD.OgrenciEkle(ogrenci);
+            if (ID == 0)
+                _CRUD.OgrenciEkle(ogrenci);
+            else
+                _CRUD.OgrenciGuncelle(ogrenci);
+
 
             this.Close();
         }

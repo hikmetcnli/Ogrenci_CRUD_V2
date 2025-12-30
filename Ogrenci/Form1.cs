@@ -13,6 +13,7 @@ namespace Ogrenci
 {
     public partial class Form1 : Form
     {
+        Ogreci_CRUD cRUD = new Ogreci_CRUD();
         public Form1()
         {
             InitializeComponent();
@@ -30,8 +31,7 @@ namespace Ogrenci
         }
         public void GetListe()
         {
-            grid_Liste.Rows.Clear();
-            Ogreci_CRUD cRUD = new Ogreci_CRUD();
+            grid_Liste.Rows.Clear();           
             List<Ogrenci> ogrencis = cRUD.GetOgrenciListe();
 
             foreach (Ogrenci ogrenci in ogrencis)
@@ -49,6 +49,32 @@ namespace Ogrenci
             frm_OgrenciEkle frm = new frm_OgrenciEkle();
             frm.ShowDialog();
             GetListe();
+
+        }
+
+        private void grid_Liste_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 4 && e.ColumnIndex != 5)
+                return;
+
+            if (e.RowIndex == -1)
+                return;
+
+            int ID = Convert.ToInt32( grid_Liste.Rows[e.RowIndex].Cells[0].Value);
+
+            if (e.ColumnIndex == 4) //Güncelleme
+            {
+                frm_OgrenciEkle frm = new frm_OgrenciEkle(ID);
+                frm.ShowDialog();
+                GetListe();
+            }
+            else
+            {
+                //Silme
+                cRUD.OgrenciSil(ID);
+                GetListe();
+            }
+            
 
         }
     }

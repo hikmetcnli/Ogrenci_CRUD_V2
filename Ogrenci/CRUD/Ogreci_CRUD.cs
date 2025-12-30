@@ -37,9 +37,30 @@ namespace Ogrenci.CRUD
             return ogrencis;
         }
 
-
         //Tek Öğreci Liste
+        public Ogrenci GetOgrenci(int ID)
+        {
+            Ogrenci ogrenci = new Ogrenci();
 
+            using (SqlConnection con = Baglanti.GetConnection())
+            {
+                //SqlCommand cmd = new SqlCommand("SELECT * FROM Ogrenci WHERE ID="+ ID.ToString()+"", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Ogrenci WHERE ID=@ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+                con.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ogrenci.Id = Convert.ToInt32(dr["ID"]);
+                    ogrenci.Ad = dr["Ad"].ToString();
+                    ogrenci.Soyad = dr["Soyad"].ToString();
+                    ogrenci.Numara = Convert.ToInt32(dr["Numara"]);                      
+                }
+            }
+
+            return ogrenci;
+        }
         //Öğrenci Ekle
         public void OgrenciEkle(Ogrenci ogrenci)
         {
@@ -56,7 +77,31 @@ namespace Ogrenci.CRUD
         }
 
         //Öğrenci güncelle
+        public void OgrenciGuncelle(Ogrenci ogrenci)
+        {
+            using (SqlConnection con = Baglanti.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand("UPDATE Ogrenci SET Numara = @Numara, Soyad = @Soyad, Ad = @Ad  WHERE ID = @ID", con);
+                cmd.Parameters.AddWithValue("@Ad", ogrenci.Ad);
+                cmd.Parameters.AddWithValue("@Soyad", ogrenci.Soyad);
+                cmd.Parameters.AddWithValue("@Numara", ogrenci.Numara);
+                cmd.Parameters.AddWithValue("@ID", ogrenci.Id);
 
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
         //Öğrenci Sil
+        public void OgrenciSil(int ID)
+        {
+            using (SqlConnection con = Baglanti.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand("DELETE Ogrenci WHERE ID = @ID", con);
+                cmd.Parameters.AddWithValue("@ID", ID);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }
